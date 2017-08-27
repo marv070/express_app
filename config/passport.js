@@ -1,11 +1,15 @@
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../app/models/user');
+
+var User            = require('../app/models/user');
 
 module.exports = function(passport) {
+
+
   passport.serializeUser(function(user, done){
     done(null, user.id);
   });
+
   passport.deserializeUser(function(id, done){
     User.findById(id, function(err, user){
       done(err, user);
@@ -24,11 +28,11 @@ module.exports = function(passport) {
         if(err)
           return done(err);
         if(user){
-          return done(null, false, req.flash('signupMessage', 'That email is already taken'));
+          return done(null, false, req.flash('signupMessage', 'That email already taken'));
         } else {
           var newUser = new User();
           newUser.local.username = email;
-          newUser.local.password = password;
+          newUser.local.password = newUser.generateHash(password);
 
           newUser.save(function(err){
             if(err)
@@ -37,14 +41,15 @@ module.exports = function(passport) {
           })
         }
       })
+
     });
-}));
-passport.use('local-login', new LocalStrategy({
+  }));
+
+  passport.use('local-login', new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
     },
-
     function(req, email, password, done){
       process.nextTick(function(){
         User.findOne({ 'local.username': email}, function(err, user){
@@ -52,7 +57,7 @@ passport.use('local-login', new LocalStrategy({
             return done(err);
           if(!user)
             return done(null, false, req.flash('loginMessage', 'No User found'));
-          if(user.local.password != password){
+          if(!user.validPassword(password)){
             return done(null, false, req.flash('loginMessage', 'invalid password'));
           }
           return done(null, user);
@@ -63,8 +68,7 @@ passport.use('local-login', new LocalStrategy({
   ));
 
 
-}
-
+};
 
 
 
