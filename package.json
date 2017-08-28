@@ -19,6 +19,7 @@
     "mongoose": "latest",
     "morgan": "^1.8.2",
     "passport": "^0.4.0",
+    "marv070": "https://github.com/marv070/express_app",
     "passport-local": "^1.0.0"
   }
 }
