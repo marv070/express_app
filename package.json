@@ -9,6 +9,7 @@
   "author": "marvin laucher",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "latest",
     "connect-flash": "^0.1.1",
     "cookie-parser": "latest",
