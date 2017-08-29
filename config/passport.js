@@ -31,10 +31,10 @@ module.exports = function(passport) {
           return done(null, false, req.flash('signupMessage', 'That email already taken'));
         } else {
           var newUser = new User();
-          // newUser.local.username = email;
-          // newUser.local.password = newUser.generateHash(password);
           newUser.local.username = email;
-          newUser.local.password = password;
+          newUser.local.password = newUser.generateHash(password);
+          // newUser.local.username = email;
+          // newUser.local.password = password;
 
           newUser.save(function(err){
             if(err)
