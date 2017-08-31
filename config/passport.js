@@ -104,9 +104,9 @@ module.exports = function(passport) {
   ));
 
   passport.use(new GoogleStrategy({
-      clientID: configAuth.googleAuth.clientID,
-      clientSecret: configAuth.googleAuth.clientSecret,
-      callbackURL: configAuth.googleAuth.callbackURL
+      clientID: '867609552493-lg4fepcutch8iv1jfc71hauq2il6gkb6.apps.googleusercontent.com',
+      clientSecret: 'vg80LsS1_AYLXe2reQfK4LHR',
+      callbackURL: 'http://my-node-express-app.herokuapp.com/auth/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function(){
