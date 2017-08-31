@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-var User  = require('../app/models/user');
+var User            = require('../app/models/user');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
@@ -70,10 +70,10 @@ module.exports = function(passport) {
   ));
 
 
-   passport.use(new FacebookStrategy({
-      clientID: '173232393222581',
-      clientSecret: '90dda0343ff71f17eac4987c700b4e83',
-      callbackURL: 'http://my-node-express-app.herokuapp.com/auth/facebook/callback',
+  passport.use(new FacebookStrategy({
+      clientID: configAuth.facebookAuth.clientID,
+      clientSecret: configAuth.facebookAuth.clientSecret,
+      callbackURL: configAuth.facebookAuth.callbackURL,
       profileFields: ['id', 'name', 'emails']
     },
     function(accessToken, refreshToken, profile, done) {
@@ -104,9 +104,10 @@ module.exports = function(passport) {
   ));
 
   passport.use(new GoogleStrategy({
-      clientID: '867609552493-lg4fepcutch8iv1jfc71hauq2il6gkb6.apps.googleusercontent.com',
-      clientSecret: 'vg80LsS1_AYLXe2reQfK4LHR',
-      callbackURL: 'http://my-node-express-app.herokuapp.com/auth/google/callback'
+      clientID: configAuth.googleAuth.clientID,
+      clientSecret: configAuth.googleAuth.clientSecret,
+      callbackURL: configAuth.googleAuth.callbackURL,
+      profileFields: ['id', 'name', 'emails']
     },
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function(){
@@ -140,6 +141,5 @@ module.exports = function(passport) {
 
 
 };
-
 
 
