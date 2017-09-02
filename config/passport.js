@@ -107,7 +107,7 @@ module.exports = function(passport) {
       clientID: configAuth.googleAuth.clientID,
       clientSecret: configAuth.googleAuth.clientSecret,
       callbackURL: configAuth.googleAuth.callbackURL,
-      profileFields: ['id', 'name', 'emails']
+      // profileFields: ['id', 'name', 'emails','profile']
     },
     function(accessToken, refreshToken, profile, done) {
         process.nextTick(function(){
