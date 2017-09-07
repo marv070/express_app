@@ -1,5 +1,9 @@
 var User = require('./models/user');
+var Board = require("./models/board");
+var board = new Board();
+
 module.exports = function(app, passport){
+  
   app.get('/', function(req, res){
     res.render('index.ejs');
   });
@@ -40,68 +44,40 @@ module.exports = function(app, passport){
     passport.authenticate('google', { successRedirect: '/profile',
                                         failureRedirect: '/' }));
 
-  app.get('/connect/facebook', passport.authorize('facebook', { scope: 'email' }), function(req, res){
-    console.log("account" + req.account);
-  });
-  app.get('/connect/google', passport.authorize('google', { scope: ['profile', 'email'] }));
-
-  app.get('/connect/local', function(req, res){
-    res.render('connect-local.ejs', { message: req.flash('signupMessage')});
-  });
-
-  app.post('/connect/local', passport.authenticate('local-signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/connect/local',
-    failureFlash: true
-  }));
-
-  app.get('/unlink/facebook', function(req, res){
-    var user = req.user;
-
-    user.facebook.token = null;
-
-    user.save(function(err){
-      if(err)
-        throw err;
-      res.redirect('/profile');
-    })
-  });
-
-  app.get('/unlink/local', function(req, res){
-    var user = req.user;
-
-    user.local.username = null;
-    user.local.password = null;
-
-    user.save(function(err){
-      if(err)
-        throw err;
-      res.redirect('/profile');
-    });
-
-  });
-
-  app.get('/unlink/google', function(req, res){
-    var user = req.user;
-    user.google.token = null;
-
-    user.save(function(err){
-      if(err)
-        throw err;
-      res.redirect('/profile');
-    });
-  });
-
-
-
-
-
 
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
   })
+  var current_player = "x";
+  function change_player(current_player){
+    if(current_player == "x"){
+      return current_player = "o";
+    }else if(current_player == "o") { 
+      return current_player = "x";
+  }
+  }
+  var board_array = ["1","2","3","4","5","6","7","8","9"];
+ 
+
+
+  app.get('/getMove', function(req, res){
+    
+    res.render('board.ejs', { board_array: board_array});
+  });
+
+  app.post('/user_move', function(req,res){
+  var choice = req.body.square;
+  board_array[choice - 1]   = current_player;
+  // res.send("user move was :" + choice + "<br>" + board_array  );
+  res.redirect('/getMove')
+  
+});
+
+
+
 };
+
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
@@ -109,7 +85,6 @@ function isLoggedIn(req, res, next) {
   }
 
   res.redirect('/login');
-
 }
 
 
