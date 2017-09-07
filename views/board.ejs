@@ -1,6 +1,10 @@
 <center><h1>Tic Tac Toe</h1> <p>
-   
-<h1> Make your Move</h1>
+
+<% if (current_player == "o") { %>
+  <h1>Player O please pick your square</h1>
+<% }else { %>
+<h1> Hey Player X, why dont you pick a square!</h1>  
+ <% } %>
 <form action ='user_move' method='post'>
 
   <h2>

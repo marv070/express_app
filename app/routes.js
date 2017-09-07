@@ -67,7 +67,7 @@ module.exports = function(app, passport){
 
   app.get('/getMove', function(req, res){
     
-    res.render('board.ejs', { board_array: board_array});
+    res.render('board.ejs', { board_array: board_array, current_player: current_player});
   });
 
   app.post('/user_move', function(req,res){
