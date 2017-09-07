@@ -50,13 +50,17 @@ module.exports = function(app, passport){
     res.redirect('/');
   })
   var current_player = "x";
-  function change_player(current_player){
+
+ function change_player(current_player){
+    current_player = current_player;
     if(current_player == "x"){
-      return current_player = "o";
+      current_player =  "o";
     }else if(current_player == "o") { 
-      return current_player = "x";
+      current_player =  "x";
   }
-  }
+  return current_player
+  };
+ 
   var board_array = ["1","2","3","4","5","6","7","8","9"];
  
 
@@ -69,6 +73,7 @@ module.exports = function(app, passport){
   app.post('/user_move', function(req,res){
   var choice = req.body.square;
   board_array[choice - 1]   = current_player;
+  current_player = change_player(current_player);
   // res.send("user move was :" + choice + "<br>" + board_array  );
   res.redirect('/getMove')
   
