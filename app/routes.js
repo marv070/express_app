@@ -1,6 +1,6 @@
 var User = require('./models/user');
-var Board = require("./models/board");
-var board = new Board();
+// var Board = require("./models/board");
+var TttLogic = require("./models/board");
 
 module.exports = function(app, passport){
   
@@ -61,18 +61,18 @@ module.exports = function(app, passport){
   return current_player
   };
  
-  var board_array = ["1","2","3","4","5","6","7","8","9"];
+  // var board_array = ["1","2","3","4","5","6","7","8","9"];
  
 
 
   app.get('/getMove', function(req, res){
     
-    res.render('board.ejs', { board_array: board_array, current_player: current_player});
+    res.render('board.ejs', { board_array: TttLogic.board_array, current_player: current_player});
   });
 
   app.post('/user_move', function(req,res){
   var choice = req.body.square;
-  board_array[choice - 1]   = current_player;
+  TttLogic.board_array[choice - 1]   = current_player;
   current_player = change_player(current_player);
   // res.send("user move was :" + choice + "<br>" + board_array  );
   res.redirect('/getMove')

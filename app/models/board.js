@@ -1,14 +1,16 @@
-// var method = Board.prototype;
+module.exports = {
+
+  board_array: ["1","2","3","4","5","6","7","8","9"]
+//   sayHelloInEnglish: function() {
+//     return "HELLO";
+//   },
+
+// sayHelloInSpanish: function() {
+//     return "Hola";
+//   }
 
 // function Board() {
-//     this.board_array = ["1","2","3","4","5","6","7","8","9"];
+//   this.gameBoard = ["1","2","3","4","5","6","7","8","9"]
 // }
 
-// // method.getAge = function() {
-// //     return this._age;
-// // };
-function Board() {
-  this.gameBoard = ["1","2","3","4","5","6","7","8","9"]
-}
-
-module.exports = Board;
+};
