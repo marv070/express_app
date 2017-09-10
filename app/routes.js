@@ -49,32 +49,18 @@ module.exports = function(app, passport){
     req.logout();
     res.redirect('/');
   })
-  var current_player = "x";
-
- function change_player(current_player){
-    current_player = current_player;
-    if(current_player == "x"){
-      current_player =  "o";
-    }else if(current_player == "o") { 
-      current_player =  "x";
-  }
-  return current_player
-  };
  
-  // var board_array = ["1","2","3","4","5","6","7","8","9"];
- 
-
-
   app.get('/getMove', function(req, res){
     
-    res.render('board.ejs', { board_array: TttLogic.board_array, current_player: current_player});
+    res.render('board.ejs', { board_array: TttLogic.board_array, current_player: TttLogic.current_player});
   });
 
   app.post('/user_move', function(req,res){
-  var choice = req.body.square;
-  TttLogic.board_array[choice - 1]   = current_player;
-  current_player = change_player(current_player);
-  // res.send("user move was :" + choice + "<br>" + board_array  );
+    var choice = req.body.square;
+    TttLogic.board_array[choice - 1] = TttLogic.current_player;
+    TttLogic.current_player = TttLogic.change_player(TttLogic.current_player);
+    // res.send("current player is: " + TttLogic.current_player );
+     
   res.redirect('/getMove')
   
 });
