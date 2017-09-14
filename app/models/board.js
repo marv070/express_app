@@ -10,7 +10,8 @@ update_turn = function(current_player){
 },
 
 update_move = function(choice,board,current_player){
-  board[choice - 1] = current_player;
+   board[choice - 1] = current_player;
+   return board
 }
   
 module.exports = {
