@@ -1,0 +1,24 @@
+<center><h1>Game has ended in a tie!!</h1> <p>
+
+
+<form action ='user_move' method='post'>
+
+  <h1>
+  <input type="submit" name='square' value= <%=board_array[0]%>> | 
+  <input type="submit" name='square' value= <%=board_array[1]%>> | 
+  <input type="submit" name='square' value= <%=board_array[2]%>><br>
+  -------------- <br>
+  <input type="submit" name='square' value= <%=board_array[3]%>> | 
+  <input type="submit" name='square' value= <%=board_array[4]%>> | 
+  <input type="submit" name='square' value= <%=board_array[5]%>><br>
+  -------------- <br>
+  <input type="submit" name='square' value= <%=board_array[6]%>> | 
+  <input type="submit" name='square' value= <%=board_array[7]%>> | 
+  <input type="submit" name='square' value= <%=board_array[8]%>><br> 
+  </h1>
+  
+</form>
+  <div>
+    <a href="/getMove" class="btn btn-default btn-sm">New Game</a>
+  </div>
+</center>

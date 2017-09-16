@@ -60,11 +60,26 @@ module.exports = function(app, passport){
     // TttLogic.board_array[choice - 1] = TttLogic.current_player;
     TttLogic.update_board(choice,TttLogic.board_array,TttLogic.current_player)
     TttLogic.current_player = TttLogic.change_player(TttLogic.current_player);
+          if(TttLogic.full_board(TttLogic.board_array)){
+            res.redirect('/gameTie')
+          }else{
+
+
     // res.send("current player is: " + TttLogic.current_player );
      
   res.redirect('/getMove')
-  
-});
+  }
+  });
+
+  app.get('/getTest', function(req, res){
+    
+    res.render('testResultsInBrowser.ejs');
+  });
+
+  app.get('/gameTie', function(req, res){
+    TttLogic.board_array = [1,2,3,4,5,6,7,8,9]
+    res.render('gameTie.ejs', { board_array: TttLogic.board_array});
+  });
 
 
 
