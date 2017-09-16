@@ -1,6 +1,6 @@
 var User = require('./models/user');
 // var Board = require("./models/board");
-var TttLogic = require("./models/board");
+var TttLogic = require("./models/gameLogic");
 
 module.exports = function(app, passport){
   
