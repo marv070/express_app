@@ -83,6 +83,17 @@ describe('board full method returns true if no intergers found', function() {
     
     assert.equal(true,ttt.full_board(ttt.board_array));
   });
+  it('will return false with interger in board array', function() {
+    ttt.board_array = ["x", 2, "x", "o", "x", "o", "x", "o", "x"]
+    
+    assert.equal(false,ttt.full_board(ttt.board_array));
+  });
+  it('will return false with muliply intergers in board array', function() {
+    ttt.board_array = ["x", 2, "x", "o", 5, "o", "x", 8, "x"]
+    
+    assert.equal(false,ttt.full_board(ttt.board_array));
+  });
+
 
 });
   
