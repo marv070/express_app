@@ -63,12 +63,9 @@ module.exports = function(app, passport){
           if(TttLogic.full_board(TttLogic.board_array)){
             res.redirect('/gameTie')
           }else{
-
-
-    // res.send("current player is: " + TttLogic.current_player );
-     
-  res.redirect('/getMove')
-  }
+    // res.send("current player is: " + TttLogic.current_player );   
+            res.redirect('/getMove')
+          }
   });
 
   app.get('/getTest', function(req, res){

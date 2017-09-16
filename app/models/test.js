@@ -2,7 +2,7 @@ var chai = require('chai');
 var assert = chai.assert;
 var expect = chai.expect;
 
-var ttt = require("./board.js");
+var ttt = require("./gameLogic.js");
 
 describe('current_playerIs', function() {
   it('current player is x at start of game', function() {
@@ -73,6 +73,15 @@ describe(' update board array with current player choice', function() {
     update_move = ttt.update_board(choice,ttt.board_array,ttt.current_player)
    
     expect(["x",2,"x",4,5,6,"o",8,"o"]).to.eql(update_move);
+  });
+
+});
+
+describe('board full method returns true if no intergers found', function() {
+  it('will return true with no intergers', function() {
+    ttt.board_array = ["x", "o", "x", "o", "x", "o", "x", "o", "x"]
+    
+    assert.equal(true,ttt.full_board(ttt.board_array));
   });
 
 });
