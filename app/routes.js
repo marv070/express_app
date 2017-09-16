@@ -74,9 +74,15 @@ module.exports = function(app, passport){
   });
 
   app.get('/gameTie', function(req, res){
-    TttLogic.board_array = [1,2,3,4,5,6,7,8,9]
+    
     res.render('gameTie.ejs', { board_array: TttLogic.board_array});
   });
+
+  app.get('/reset', function(req,res){
+    TttLogic.board_array = [1,2,3,4,5,6,7,8,9]
+    res.redirect('/getMove')
+
+  })
 
 
 
