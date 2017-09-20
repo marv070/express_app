@@ -52,20 +52,25 @@ module.exports = function(app, passport){
  
   app.get('/getMove', function(req, res){
     
-    res.render('board.ejs', { board_array: TttLogic.board_array, current_player: TttLogic.current_player});
+    res.render('board.ejs', { board_array: TttLogic.board_array, current_player: TttLogic.current_player, message: ''});
   });
 
   app.post('/user_move', function(req,res){
     var choice = req.body.square;
     // TttLogic.board_array[choice - 1] = TttLogic.current_player;
-    TttLogic.update_board(choice,TttLogic.board_array,TttLogic.current_player)
-    TttLogic.current_player = TttLogic.change_player(TttLogic.current_player);
+      if(TttLogic.valid_space(choice)) {
+        TttLogic.update_board(choice,TttLogic.board_array,TttLogic.current_player)
+        TttLogic.current_player = TttLogic.change_player(TttLogic.current_player);
           if(TttLogic.full_board(TttLogic.board_array)){
             res.redirect('/gameTie')
           }else{
     // res.send("current player is: " + TttLogic.current_player );   
             res.redirect('/getMove')
           }
+
+      }else{
+        res.render('board.ejs', { board_array: TttLogic.board_array, current_player: TttLogic.current_player, message: '!!Lets try an open spot this time!!'});
+      }
   });
 
   app.get('/getTest', function(req, res){

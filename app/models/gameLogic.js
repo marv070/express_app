@@ -14,7 +14,7 @@ update_move = function(choice,board,current_player){
    return board
 },
 
-board_full = function (board) {
+board_full = function(board) {
      counter = 0;
     for (var i = 0; i < board.length; i++) {
         if (board[i] === parseInt(board[i])) {
@@ -27,15 +27,24 @@ board_full = function (board) {
         return false
       }
      // return true if counter == 0
-}
+},
+
+open_space = function(choice) {
+    if (choice == parseInt(choice)) {
+        return true
+      } else {
+        return false
+      }
+},
+
+
   
 module.exports = {
   current_player : "x",
   board_array : [1,2,3,4,5,6,7,8,9],
   change_player : update_turn,
   full_board : board_full,
-  
-  update_board : update_move
-  
-  
+  update_board : update_move,
+  valid_space : open_space
+   
 };
