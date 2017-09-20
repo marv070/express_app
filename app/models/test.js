@@ -96,4 +96,14 @@ describe('board full method returns true if no intergers found', function() {
 
 
 });
+
+describe('valid spot returns true', function() {
+  it('returns true if player choice is interger', function() {
+   ttt.board_array = [1, 2, "x", "o", 5, "o", "x", 8, "x"]
+   choice = 3
+    assert.equal(true,ttt.valid_space(choice,ttt.board_array));
+  });
+
+});
+
   

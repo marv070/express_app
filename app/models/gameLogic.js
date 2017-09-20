@@ -29,13 +29,21 @@ board_full = function(board) {
      // return true if counter == 0
 },
 
-open_space = function(choice) {
-    if (choice == parseInt(choice)) {
+// open_space = function(choice) {
+//     if (choice == parseInt(choice)) {
+//         return true
+//       } else {
+//         return false
+//       }
+// },
+open_space = function(choice,board) {
+    if (board[choice-1] == parseInt(board[choice-1])) {
         return true
       } else {
         return false
       }
 },
+
 
 
   

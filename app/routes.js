@@ -58,7 +58,7 @@ module.exports = function(app, passport){
   app.post('/user_move', function(req,res){
     var choice = req.body.square;
     // TttLogic.board_array[choice - 1] = TttLogic.current_player;
-      if(TttLogic.valid_space(choice)) {
+      if(TttLogic.valid_space(choice, TttLogic.board_array)) {
         TttLogic.update_board(choice,TttLogic.board_array,TttLogic.current_player)
         TttLogic.current_player = TttLogic.change_player(TttLogic.current_player);
           if(TttLogic.full_board(TttLogic.board_array)){
