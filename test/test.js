@@ -116,7 +116,7 @@ describe('valid spot returns true', function() {
   it('returns false if player choice is interger 9', function() {
    ttt.board_array = [1, 2, "x", "o", 5, "o", "x", 8, "x"]
    choice = 9
-    assert.equal(false,ttt.valid_space(choice,ttt.board_array));
+    assert.equal(true,ttt.valid_space(choice,ttt.board_array));
   });
 
 });
