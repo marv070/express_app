@@ -29,13 +29,6 @@ board_full = function(board) {
      // return true if counter == 0
 },
 
-// open_space = function(choice) {
-//     if (choice == parseInt(choice)) {
-//         return true
-//       } else {
-//         return false
-//       }
-// },
 open_space = function(choice,board) {
     if (board[choice-1] == parseInt(board[choice-1])) {
         return true
@@ -43,6 +36,26 @@ open_space = function(choice,board) {
         return false
       }
 },
+
+// winner? = function(marker,board) {
+//     result = false;
+//     winning_lines = [[ttt_board[0],ttt_board[1],ttt_board[2]],
+//              [ttt_board[3],ttt_board[4],ttt_board[5]],
+//              [ttt_board[6],ttt_board[7],ttt_board[8]],
+//              [ttt_board[0],ttt_board[3],ttt_board[6]],
+//              [ttt_board[1],ttt_board[4],ttt_board[7]],
+//              [ttt_board[2],ttt_board[5],ttt_board[8]],
+//              [ttt_board[0],ttt_board[4],ttt_board[8]],
+//              [ttt_board[2],ttt_board[4],ttt_board[6]]]
+
+//       winning_lines.each do |winning_line|
+//         if(winning_line.count(marker) == 3)
+//         result = true
+//         end
+//       end
+//      return result
+
+// }
 
 
 
@@ -54,5 +67,6 @@ module.exports = {
   full_board : board_full,
   update_board : update_move,
   valid_space : open_space
+  // win? : winner?
    
 };
