@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-     "test": "node_modules/.bin/mocha -w"
+    "test": "mocha test/test.js"
+     
   },
   "author": "marvin laucher",
   "license": "ISC",
